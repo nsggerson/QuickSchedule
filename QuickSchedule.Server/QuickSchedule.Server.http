@@ -1,0 +1,6 @@
+@QuickSchedule.Server_HostAddress = http://localhost:5134
+
+GET {{QuickSchedule.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

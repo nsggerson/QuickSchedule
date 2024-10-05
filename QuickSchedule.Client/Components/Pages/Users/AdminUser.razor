@@ -1,0 +1,54 @@
+﻿@page "/user/admin"
+@using QuickSchedule.Shared.Models
+@inject HttpClient Http
+@*rendermode InteractiveServer*@
+@code {
+    List<UserSy> Users { get; set; } = new();
+
+    private async Task GetUsersAsync()
+    {
+        var response =  await Http.GetFromJsonAsync<List<UserSy>>("api/users");
+        if (response == null) return;
+        Users = response;
+    }
+}
+
+<div class="d-flex">
+    <MudButton OnClick="GetUsersAsync" Variant="Variant.Filled" Color="Color.Primary">
+        Edit rating
+        
+    </MudButton>
+    <MudRating SelectedValue="_rating" Disabled="true" Class="mt-1 ml-3" />
+</div>
+
+<MudDialog @bind-Visible="_visible" Options="_dialogOptions">
+    <TitleContent>
+        <MudText Typo="Typo.h6">
+            <MudIcon Icon="@Icons.Material.Filled.Edit" Class="mr-3" /> Edit rating
+        </MudText>
+    </TitleContent>
+    <DialogContent>
+        <p>How awesome are inline dialogs?</p>
+        <MudRating @bind-SelectedValue="_rating" Class="mt-3" />
+    </DialogContent>
+    <DialogActions>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="GetUsersAsync" Class="px-10">Close</MudButton>
+    </DialogActions>
+</MudDialog>
+
+
+@foreach (var item in Users)
+{
+    <p>@item.Name</p>
+    <p>@item.Id</p>
+}
+
+@code {
+    private bool _visible;
+    private int _rating;
+    private readonly DialogOptions _dialogOptions = new() { FullWidth = true };
+
+    private void OpenDialog() => _visible = true;
+
+    private void Submit() => _visible = false;
+}
