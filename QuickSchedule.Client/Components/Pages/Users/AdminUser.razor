@@ -1,5 +1,4 @@
 ﻿@page "/user/admin"
-@using QuickSchedule.Shared.Models
 @inject HttpClient Http
 @*rendermode InteractiveServer*@
 @code {
@@ -7,7 +6,7 @@
 
     private async Task GetUsersAsync()
     {
-        var response =  await Http.GetFromJsonAsync<List<UserSy>>("api/users");
+        var response =  await Http.GetFromJsonAsync<List<UserSy>>("/api/users");
         if (response == null) return;
         Users = response;
     }

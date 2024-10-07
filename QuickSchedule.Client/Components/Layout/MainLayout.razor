@@ -5,16 +5,39 @@
 <MudDialogProvider />
 <MudSnackbarProvider />
 <MudLayout>
-    <MudAppBar Elevation="1">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-        <MudText Typo="Typo.h5" Class="ml-3">Application</MudText>
+    <MudAppBar Elevation="1" Dense="true">
+        @if(false)
+        {
+            <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+            <MudText Typo="Typo.h5" Class="ml-3">Application</MudText>
+        }
+        else
+        {
+            <MudButton Variant="Variant.Text">Home</MudButton>
+        }
         <MudSpacer />
-        <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle" />
-        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+        @*<MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle" />*@
+        @if(true)
+        {
+            <MudMenu Icon="@Icons.Material.Filled.Person" Dense="true" AriaLabel="Abrir menu do usuário">
+                <MudMenuItem Icon="@(DarkLightModeButtonIcon)" OnClick="@DarkModeToggle">Alterar tema</MudMenuItem>
+                <MudMenuItem>Meu contrato</MudMenuItem>
+                <MudMenuItem>Políticas de Privacidade</MudMenuItem>
+                <MudMenuItem>Minha conta</MudMenuItem>
+                <MudMenuItem>Encerrar conta</MudMenuItem>
+                <MudDivider />
+                <MudMenuItem>Logout</MudMenuItem>
+            </MudMenu>
+
+        }
     </MudAppBar>
-    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
-        <NavMenu />
-    </MudDrawer>
+    @if(false)
+    {
+
+        <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+            <NavMenu />
+        </MudDrawer> 
+    }
     <MudMainContent Class="mt-16 pa-4">
         @Body
     </MudMainContent>

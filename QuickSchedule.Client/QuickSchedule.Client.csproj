@@ -9,10 +9,17 @@
 
   <ItemGroup>
     <PackageReference Include="MudBlazor" Version="7.*" />
+    <PackageReference Include="Unity" Version="5.11.10" />
   </ItemGroup>
 
 
   <ItemGroup>
     <ProjectReference Include="..\QuickSchedule.Shared\QuickSchedule.Shared.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Components\ComponentsShared\" />
+    <Folder Include="Shared\Utilities\" />
   </ItemGroup>
 </Project>

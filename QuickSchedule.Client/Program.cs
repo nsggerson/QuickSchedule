@@ -1,5 +1,6 @@
 using MudBlazor.Services;
 using QuickSchedule.Client.Components;
+using QuickSchedule.Client.Shared.ViewModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,8 @@ builder.Services.AddRazorComponents()
 builder.Services.AddScoped(sp =>
     new HttpClient { BaseAddress = new Uri("https://localhost:7041") }); // Substitua pela URL da sua API
 
+// Registrar LoginViewModel como serviço
+builder.Services.AddScoped<LoginViewModel>();
 
 var app = builder.Build();
 

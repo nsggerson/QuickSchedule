@@ -1,0 +1,6 @@
+--Cria uma nova migração
+dotnet ef migrations add NomeDaMigracao
+
+--Persiste na base de dados
+dotnet ef database update
+
